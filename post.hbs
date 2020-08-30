@@ -50,7 +50,7 @@ into the {body} of the default.hbs template --}}
                                         <div class="bio">
                                             <h2>{{name}}</h2>
                                             <p>{{bio}}</p>
-                                            <p><a href="{{url}}">More posts</a> by {{name}}.</p>
+                                            <p><a href="{{url}}">نوشته‌های دیگر </a> {{name}}</p>
                                         </div>
                                         {{else}}
                                         <h2>{{name}}</h2>
@@ -75,7 +75,6 @@ into the {body} of the default.hbs template --}}
                             <h4 class="author-name">{{authors}}</h4>
                             <div class="byline-meta-content">
                                 <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                                <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
                             </div>
                         </section>
 
@@ -85,24 +84,7 @@ into the {body} of the default.hbs template --}}
                 </div>
             </header>
 
-            {{#if feature_image}}
-            <figure class="post-full-image">
-                {{!-- This is a responsive image, it loads different sizes depending on device
-                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(max-width: 800px) 400px,
-                        (max-width: 1170px) 1170px,
-                            2000px"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{title}}"
-                />
-            </figure>
-            {{/if}}
-
+           
             <section class="post-full-content">
                 <div class="post-content">
                     {{content}}
@@ -135,7 +117,7 @@ into the {body} of the default.hbs template --}}
                 <article class="read-next-card">
                     <header class="read-next-card-header">
                         {{#../primary_tag}}
-                        <h3><span>More in</span> <a href="{{url}}">{{name}}</a></h3>
+                        <h3><span>نوشته‌های بیشتر در </span> <a href="{{url}}">{{name}}</a></h3>
                         {{/../primary_tag}}
                     </header>
                     <div class="read-next-card-content">
@@ -144,16 +126,15 @@ into the {body} of the default.hbs template --}}
                             <li>
                                 <h4><a href="{{url}}">{{title}}</a></h4>
                                 <div class="read-next-card-meta">
-                                    <p><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> –
-                                        {{reading_time}}</p>
+                                    <p><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time></p>
                                 </div>
                             </li>
                             {{/foreach}}
                         </ul>
                     </div>
                     <footer class="read-next-card-footer">
-                        <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty='No posts' singular='% post' plural='See all % posts'}}
-                            →</a>
+                        <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty='No posts' singular='% post' plural='مشاهده همه % نوشته'}}
+                            ←</a>
                     </footer>
                 </article>
                 {{/if}}
